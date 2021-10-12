@@ -191,8 +191,6 @@ class Dr_Stewart():
     Depending on number of odd state values uses different algorithm to determine which column and amount to subtract from piles
     '''
     def nim_algorithm(self):
-        print("Odds: ", self.odd)
-        print("Board state: ", self.pile_states)
         smallest = 10
         largest = 0
         empty_pile_tracker = 0
