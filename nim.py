@@ -209,6 +209,13 @@ class Dr_Stewart():
             if piles == [2]:
                 double_pile_tracker +=1
 
+        if single_pile_tracker ==3:
+            for col, piles in enumerate(self.nim.nim_sticks):
+                if piles[0] > 1:
+                    col_total = piles[0]
+                    return col, col_total
+
+
         if single_pile_tracker ==2 and double_pile_tracker ==1:
             for col, piles in enumerate(self.nim.nim_sticks):
                 if piles[0] > 1:
@@ -297,6 +304,8 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
 
         
 
