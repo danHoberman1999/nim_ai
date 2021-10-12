@@ -191,20 +191,39 @@ class Dr_Stewart():
     Depending on number of odd state values uses different algorithm to determine which column and amount to subtract from piles
     '''
     def nim_algorithm(self):
+        print("Odds: ", self.odd)
+        print("Board state: ", self.pile_states)
         smallest = 10
         largest = 0
         empty_pile_tracker = 0
         single_pile_tracker = 0
+        double_pile_tracker = 0
         col_num = 0
         col_total = 0
-        # check if final game state has been reached
+        
+
+        # This part still needs work
         for piles in self.nim.nim_sticks:
-            if piles == []:
+            if piles == [0]:
                 empty_pile_tracker += 1
             if piles == [1]:
                 single_pile_tracker +=1
+            if piles == [2]:
+                double_pile_tracker +=1
 
-        if empty_pile_tracker == 3 and single_pile_tracker == 1:
+        if single_pile_tracker ==2 and double_pile_tracker ==1:
+            for col, piles in enumerate(self.nim.nim_sticks):
+                if piles[0] > 1:
+                    col_total = 1
+                    return col, col_total
+        
+        if empty_pile_tracker == 3:
+            for col, piles in enumerate(self.nim.nim_sticks):
+                if piles[0] > 1:
+                    col_total = piles[0] -1
+                    return col, col_total
+
+        if empty_pile_tracker == 2 and single_pile_tracker == 1:
             for col, piles in enumerate(self.nim.nim_sticks):
                 if piles[0] >1:
                     col_num = col
@@ -216,8 +235,6 @@ class Dr_Stewart():
             if len(self.odd) ==1:
                 for col, val in enumerate(self.pile_states):
                     if self.odd[0][0] in val:
-                        print("Col: ", col)
-                        print("Val: ", self.odd[0][0])
                         return col, self.odd[0][0]
 
             elif len(self.odd) ==2: # find largest item figure out how much to subtract to equal other number
@@ -232,8 +249,8 @@ class Dr_Stewart():
                 
                 subtraction_amount = largest-smallest
 
-                for col, val in enumerate(self.nim.nim_sticks):
-                    if val[0] >= subtraction_amount:
+                for col, val in enumerate(self.pile_states):
+                    if largest in val:
                         return col, subtraction_amount
 
 
@@ -276,8 +293,6 @@ def main():
         stew.nim_develop_state()
         stew.nim_dictionary()
         col, amount = stew.nim_algorithm()
-        print("Column: ", col)
-        print("Amount: ", amount)
         nim.make_dr_move(col, amount)
     
     print("The Dr. has won like expected!!!!")
