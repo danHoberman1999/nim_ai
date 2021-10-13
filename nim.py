@@ -316,9 +316,9 @@ def main():
         nim.make_dr_move(col, amount)
     
     if nim.current_move == "Dr. Stewart":
-        print("Dr Stewart has one like expected")
+        print("Dr Stewart has won like expected")
     else:
-        print("well done ", nim.player)
+        print("well done, you are a genius: ", nim.player)
 
 if __name__ == "__main__":
     main()
