@@ -11,6 +11,7 @@ class Nim():
         self.nim_sticks = [[1],[3],[5],[7]]
         self.player = None
         self.AI = "Dr. Stewart"
+        self.current_move = None
 
 
     '''
@@ -54,6 +55,7 @@ class Nim():
         
         # Update state
         self.nim_sticks[int(stick_pile) - 1][0] -= int(num_sticks)
+        self.current_move = self.player
 
         # Keep playing game
         self.print_board()
@@ -66,6 +68,7 @@ class Nim():
         self.nim_sticks[int(col)][0] -= int(amount)
         self.print_board()
         print("The Dr took ", amount, "sticks from pile: ", col +1)
+        self.current_move = self.AI
 
 
 
@@ -113,7 +116,7 @@ class Dr_Stewart():
             second_pile.append(2)
         elif second_pile_state == 2:
             second_pile.append(2)
-        else:
+        elif second_pile_state == 1:
             second_pile.append(1)
 
 
@@ -128,7 +131,7 @@ class Dr_Stewart():
             third_pile.append(2)
         elif third_pile_state == 2:
             third_pile.append(2)
-        else:
+        elif third_pile_state == 1:
             third_pile.append(1)
 
 
@@ -150,7 +153,7 @@ class Dr_Stewart():
             fourth_pile.append(2)
         elif fourth_pile_state == 2:
             fourth_pile.append(2)
-        else:
+        elif fourth_pile_state == 1:
             fourth_pile.append(1)
 
         states.append(first_pile)
@@ -195,19 +198,26 @@ class Dr_Stewart():
         largest = 0
         empty_pile_tracker = 0
         single_pile_tracker = 0
-        double_pile_tracker = 0
+        large_pile_tracker = 0
         col_num = 0
         col_total = 0
         
 
         # This part still needs work
         for piles in self.nim.nim_sticks:
-            if piles == [0]:
+            if piles[0] > 1:
+                large_pile_tracker +=1
+            if piles[0] == 0:
                 empty_pile_tracker += 1
-            if piles == [1]:
+            if piles[0] == 1:
                 single_pile_tracker +=1
-            if piles == [2]:
-                double_pile_tracker +=1
+
+
+        if empty_pile_tracker ==2 and single_pile_tracker ==2:
+            for col, piles in enumerate(self.nim.nim_sticks):
+                if piles[0] == 1:
+                    col_total = piles[0]
+                    return col, col_total
 
         if single_pile_tracker ==3:
             for col, piles in enumerate(self.nim.nim_sticks):
@@ -216,10 +226,10 @@ class Dr_Stewart():
                     return col, col_total
 
 
-        if single_pile_tracker ==2 and double_pile_tracker ==1:
+        if single_pile_tracker ==2 and large_pile_tracker ==1:
             for col, piles in enumerate(self.nim.nim_sticks):
                 if piles[0] > 1:
-                    col_total = 1
+                    col_total = piles[0]-1
                     return col, col_total
         
         if empty_pile_tracker == 3:
@@ -251,8 +261,10 @@ class Dr_Stewart():
                     if val[0] < smallest:
                         smallest = val[0]
 
-                
-                subtraction_amount = largest-smallest
+                if largest == 2 and smallest == 1:
+                    subtraction_amount = largest+smallest
+                else:
+                    subtraction_amount = largest-smallest
 
                 for col, val in enumerate(self.pile_states):
                     if largest in val:
@@ -281,8 +293,11 @@ class Dr_Stewart():
 
                 subtraction_amount = holding_number - middle_col_val
 
-                for col, val in enumerate(self.nim.nim_sticks):
-                    if val[0] >= subtraction_amount:
+                for col, val in enumerate(self.pile_states):
+                    if largest in val and smallest in val and middle_col_val in val:
+                        subtraction_amount = val[0] + val[1] + val[2]
+                        return col, subtraction_amount
+                    elif largest in val:
                         return col, subtraction_amount
 
             
@@ -300,13 +315,34 @@ def main():
         col, amount = stew.nim_algorithm()
         nim.make_dr_move(col, amount)
     
-    print("The Dr. has won like expected!!!!")
+    if nim.current_move == "Dr. Stewart":
+        print("Dr Stewart has one like expected")
+    else:
+        print("well done ", nim.player)
 
 if __name__ == "__main__":
     main()
 
 
 
-        
+
+#32
+
+# should have added odds together and subtracted instead of subtracting odds from each other
 
 
+# |
+# 
+# |||||
+# ||||
+
+#54
+
+#13
+
+#13
+
+
+# 525 south cowley
+
+# 64 doesn't work
