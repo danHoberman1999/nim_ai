@@ -323,26 +323,3 @@ def main():
 if __name__ == "__main__":
     main()
 
-
-
-
-#32
-
-# should have added odds together and subtracted instead of subtracting odds from each other
-
-
-# |
-# 
-# |||||
-# ||||
-
-#54
-
-#13
-
-#13
-
-
-# 525 south cowley
-
-# 64 doesn't work
