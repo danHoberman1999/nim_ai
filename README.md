@@ -1,12 +1,16 @@
-# Dr_Stewart Nim AI
+# Dr_Nimbot (Nim AI)
 
-### Tech Stack
+### Nim Board
 
-1. Python
+1. |
+2. |||
+3. |||||
+4. |||||||
 
-### Description
+### Rules
 
-Coded a nim AI that is impossible to beat.
+1. Each round player can remove any number of sticks from any row
+2. The goal is to leave the opponenet with the final stick
 
 ### Usage
 
