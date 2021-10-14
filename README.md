@@ -9,7 +9,7 @@
 
 ### Rules
 
-1. Each round player can remove any number of sticks from any row
+1. Each round player can remove any number of sticks from any row (as long as the board contains that amount of sticks)
 2. The goal is to leave the opponenet with the final stick
 
 ### Usage
