@@ -2,15 +2,16 @@
 Daniel Hoberman
 
 Description:
-Plays a game of nim with Dr. Stewart (my AI). He will win every time.
+Plays a game of nim with Dr. Nimbot (my AI). He will win every time.
 """
 
+import sys
 
 class Nim():
     def __init__(self):
         self.nim_sticks = [[1],[3],[5],[7]]
         self.player = None
-        self.AI = "Dr. Stewart"
+        self.AI = "Dr. Nimbot"
         self.current_move = None
 
 
@@ -20,7 +21,7 @@ class Nim():
     def get_player(self):
         player_name = input("Enter player name: ")
         self.player = player_name
-        print(self.player," vs. Dr. Stewart (AI) will begin now!!!!")
+        print(self.player," vs. Dr. Nimbot (AI) will begin now!!!!")
 
 
     '''
@@ -66,7 +67,7 @@ class Nim():
     Makes the AI generated move.
     '''
     def make_dr_move(self, col, amount):
-        print("Dr. Stewart is making his move now")
+        print("Dr. Nimbot is making his move now")
         print("AI turn : \n")
         self.nim_sticks[int(col)][0] -= int(amount)
         print("The Dr took ", amount, "sticks from pile: ", col +1)
@@ -90,9 +91,9 @@ class Nim():
     
 
 
-class Dr_Stewart():
+class Dr_Nimbot():
     def __init__(self, nim):
-        self.name = "Dr. Stewart"
+        self.name = "Dr. Nimbot"
         self.pile_states = None
         self.nim = nim
         self.even = []
@@ -197,6 +198,8 @@ class Dr_Stewart():
     Depending on number of odd state values uses different algorithm to determine which column and amount to subtract from piles
     '''
     def nim_algorithm(self):
+        print("odd: ", self.odd)
+        print("state: ", self.pile_states)
         smallest = 10
         largest = 0
         pile_largest = []
@@ -210,7 +213,6 @@ class Dr_Stewart():
         col_total = 0
         
 
-        # This part still needs work
         for piles in self.nim.nim_sticks:
             if piles[0] > 1:
                 large_pile_tracker +=1
@@ -292,7 +294,6 @@ class Dr_Stewart():
                 
                 
                 for val in self.pile_states:
-                    print(val)
                     if largest in val:
                         for num in val:
                             state_total += num
@@ -337,7 +338,10 @@ class Dr_Stewart():
                     elif largest in val and middle_col_val in val:
                         subtraction_amount = largest + middle_col_val - smallest
                         return col, subtraction_amount
-                    else:
+                    elif len(val) ==1 and largest in val:
+                        subtraction_amount = largest-middle_col_val - smallest
+                        return col, subtraction_amount
+                    elif largest in val:
                         return col, subtraction_amount
 
             
@@ -351,22 +355,28 @@ def main():
         nim.player_move()
         if nim.game_over():
             break
-        stew = Dr_Stewart(nim)
-        stew.nim_develop_state()
-        stew.nim_dictionary()
-        col, amount = stew.nim_algorithm()
+        nimbot = Dr_Nimbot(nim)
+        nimbot.nim_develop_state()
+        nimbot.nim_dictionary()
+        col, amount = nimbot.nim_algorithm()
         nim.make_dr_move(col, amount)
         if nim.game_over():
             break
     
 
-    if nim.current_move == "Dr. Stewart":
-        print("Dr Stewart has won like expected")
+    if nim.current_move == "Dr. Nimbot":
+        print("Dr. Nimbot has defeated you with his giant brain!")
     else:
-        print("well done, you are a genius: ", nim.player)
+        print("You beat Dr. Nimbot. How is this possible?: ", nim.player)
+    
 
 if __name__ == "__main__":
     main()
 
 
-
+# 11
+# 13
+# 14
+# 34
+# 14
+# 13
