@@ -27,11 +27,11 @@ class Nim():
     Method used to print the nim board vertically.
     '''
     def print_board(self):
-        for val in self.nim_sticks:
-            print("\t")
+        for row, val in enumerate(self.nim_sticks):
+            print(row +1, " ", end='')
             for num in range(val[0]):
                 print("|", end=' ')
-            print()
+            print('\n')
 
 
     '''
@@ -40,10 +40,13 @@ class Nim():
     def player_move(self):
         self.print_board()
         while True:
-            val = input('{}, how many sticks to remove? '.format(self.player))
-            val2 = input('Pick a pile to remove from: ')
-            num_sticks = int(val)
-            stick_pile = int(val2)
+    
+            try:
+                num_sticks = int(input('{}, how many sticks to remove? '.format(self.player)))
+                stick_pile = int(input('Pick a pile to remove from: '))
+            except ValueError:
+                print("Hmmm. You entered an invalid value. Try again, {}.".format(self.player))
+                continue
 
             if (num_sticks and stick_pile > 0) and (stick_pile <= len(self.nim_sticks)):
                 if (num_sticks <= self.nim_sticks[stick_pile -1][0]):
