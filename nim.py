@@ -20,7 +20,7 @@ class Nim():
     def get_player(self):
         player_name = input("Enter player name: ")
         self.player = player_name
-        print("Danny vs. Dr. Stewart (AI) will begin now!!!!")
+        print(self.player," vs. Dr. Stewart (AI) will begin now!!!!")
 
 
     '''
