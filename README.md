@@ -16,7 +16,7 @@
 
 1. Start python script
 2. Enter name
-3. Try to beat Dr. Stewart in game of nim
+3. Try to beat Dr. Nimbot in game of nim
 
 ### Credits
 
