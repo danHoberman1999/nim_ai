@@ -5,7 +5,6 @@ Description:
 Plays a game of nim with Dr. Nimbot (my AI). He will win every time.
 """
 
-import sys
 
 class Nim():
     def __init__(self):
@@ -195,11 +194,10 @@ class Dr_Nimbot():
 
     
     '''
-    Depending on number of odd state values uses different algorithm to determine which column and amount to subtract from piles
+    Depending on number of odd state values uses different algorithm to determine which column and amount to subtract from piles.
+    This algorithm changes as game goes on. Game changes states many times through out 1v1
     '''
     def nim_algorithm(self):
-        print("odd: ", self.odd)
-        print("state: ", self.pile_states)
         smallest = 10
         largest = 0
         pile_largest = []
@@ -347,7 +345,9 @@ class Dr_Nimbot():
             
 
 
-            
+'''
+Loops the game until either the player or my bot wins the game
+'''            
 def main():
     nim = Nim()
     nim.get_player()
@@ -371,7 +371,13 @@ def main():
     
 
 if __name__ == "__main__":
+    #orig_stdout = sys.stdout
+    #f = open('nimbot_output.txt', 'w')
+    #sys.stdout = f
+
+    
     main()
+    #f.close()
 
 
 # 11

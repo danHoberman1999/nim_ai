@@ -1,0 +1,78 @@
+Enter player name: Danny
+Danny  vs. Dr. Nimbot (AI) will begin now!!!!
+Player turn : 
+
+1  | 
+
+2  | | | 
+
+3  | | | | | 
+
+4  | | | | | | | 
+
+Danny, how many sticks to remove? 1   
+Pick a pile to remove from: 1
+Dr. Nimbot is making his move now
+AI turn : 
+
+The Dr took  1 sticks from pile:  2
+1  
+
+2  | | 
+
+3  | | | | | 
+
+4  | | | | | | | 
+
+Player turn : 
+
+1  
+
+2  | | 
+
+3  | | | | | 
+
+4  | | | | | | | 
+
+Danny, how many sticks to remove? 3
+Pick a pile to remove from: 3
+Dr. Nimbot is making his move now
+AI turn : 
+
+The Dr took  7 sticks from pile:  4
+1  
+
+2  | | 
+
+3  | | 
+
+4  
+
+Player turn : 
+
+1  
+
+2  | | 
+
+3  | | 
+
+4  
+
+Danny, how many sticks to remove? 1
+Pick a pile to remove from: 1
+Hmmm. You entered an invalid value. Try again, Danny.
+Danny, how many sticks to remove? 1
+Pick a pile to remove from: 2
+Dr. Nimbot is making his move now
+AI turn : 
+
+The Dr took  2 sticks from pile:  3
+1  
+
+2  | 
+
+3  
+
+4  
+
+Dr. Nimbot has defeated you with his giant brain!
