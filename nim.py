@@ -38,6 +38,8 @@ class Nim():
     Method used to make player move and check if input is valid.
     '''
     def player_move(self):
+        self.current_move = self.player
+        print("Player turn : \n")
         self.print_board()
         while True:
     
@@ -58,19 +60,17 @@ class Nim():
         
         # Update state
         self.nim_sticks[int(stick_pile) - 1][0] -= int(num_sticks)
-        self.current_move = self.player
-
-        # Keep playing game
-        self.print_board()
+        
 
     '''
     Makes the AI generated move.
     '''
     def make_dr_move(self, col, amount):
         print("Dr. Stewart is making his move now")
+        print("AI turn : \n")
         self.nim_sticks[int(col)][0] -= int(amount)
-        self.print_board()
         print("The Dr took ", amount, "sticks from pile: ", col +1)
+        self.print_board()
         self.current_move = self.AI
 
 
@@ -199,6 +199,10 @@ class Dr_Stewart():
     def nim_algorithm(self):
         smallest = 10
         largest = 0
+        pile_largest = []
+        largest_pile = 0
+        largest_column = None
+        smallest_pile = 10
         empty_pile_tracker = 0
         single_pile_tracker = 0
         large_pile_tracker = 0
@@ -216,6 +220,23 @@ class Dr_Stewart():
                 single_pile_tracker +=1
 
 
+        if empty_pile_tracker ==2 and large_pile_tracker ==2:
+            for col, piles in enumerate(self.nim.nim_sticks):
+                if piles[0] > 1:
+                    pile_largest.append([piles[0],col])
+            
+            for val in pile_largest:
+                if val[0] > largest_pile:
+                    largest_pile = val[0]
+                    largest_column = val[1]
+                if val[0]< smallest_pile:
+                    smallest_pile = val[0]
+
+            subtraction_amount = largest_pile - smallest_pile
+
+            return largest_column, subtraction_amount
+
+                
         if empty_pile_tracker ==2 and single_pile_tracker ==2:
             for col, piles in enumerate(self.nim.nim_sticks):
                 if piles[0] == 1:
@@ -263,11 +284,24 @@ class Dr_Stewart():
                 for val in self.odd:
                     if val[0] < smallest:
                         smallest = val[0]
+                
 
-                if largest == 2 and smallest == 1:
-                    subtraction_amount = largest+smallest
-                else:
+
+                total = largest + smallest
+                state_total = 0
+                
+                
+                for val in self.pile_states:
+                    print(val)
+                    if largest in val:
+                        for num in val:
+                            state_total += num
+
+
+                if (total > state_total):
                     subtraction_amount = largest-smallest
+                else:
+                    subtraction_amount = largest+smallest
 
                 for col, val in enumerate(self.pile_states):
                     if largest in val:
@@ -300,7 +334,10 @@ class Dr_Stewart():
                     if largest in val and smallest in val and middle_col_val in val:
                         subtraction_amount = val[0] + val[1] + val[2]
                         return col, subtraction_amount
-                    elif largest in val:
+                    elif largest in val and middle_col_val in val:
+                        subtraction_amount = largest + middle_col_val - smallest
+                        return col, subtraction_amount
+                    else:
                         return col, subtraction_amount
 
             
@@ -312,12 +349,17 @@ def main():
     nim.get_player()
     while not nim.game_over():
         nim.player_move()
+        if nim.game_over():
+            break
         stew = Dr_Stewart(nim)
         stew.nim_develop_state()
         stew.nim_dictionary()
         col, amount = stew.nim_algorithm()
         nim.make_dr_move(col, amount)
+        if nim.game_over():
+            break
     
+
     if nim.current_move == "Dr. Stewart":
         print("Dr Stewart has won like expected")
     else:
@@ -325,4 +367,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
 
