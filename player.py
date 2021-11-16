@@ -1,13 +1,3 @@
-'''
-Daniel Hoberman
-CPSC323
-Homework #7: Game of Nim Part 2
-Update to fix issues with ability to play
-finished 11/14/21
-
-Adjusts my initial nim algorithm. Gives it the ability to play against other opponents.
-'''
-
 
 from Board import Board
 
