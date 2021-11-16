@@ -1,0 +1,109 @@
+Enter player 1 name: Hobs
+1  | 
+
+2  | | | 
+
+3  | | | | | 
+
+4  | | | | | | | 
+
+Player turn : 
+
+Hobs, how many sticks to remove? 4
+Pick a pile to remove from: 4
+1  | 
+
+2  | | | 
+
+3  | | | | | 
+
+4  | | | 
+
+Dr. Nimbot is making his move now
+AI turn : 
+
+The Dr took  4 sticks from pile:  3
+1  | 
+
+2  | | | 
+
+3  | 
+
+4  | | | 
+
+Player turn : 
+
+Hobs, how many sticks to remove? 1
+Pick a pile to remove from: 1
+1  
+
+2  | | | 
+
+3  | 
+
+4  | | | 
+
+Dr. Nimbot is making his move now
+AI turn : 
+
+The Dr took  1 sticks from pile:  2
+1  
+
+2  | | 
+
+3  | 
+
+4  | | | 
+
+Player turn : 
+
+Hobs, how many sticks to remove? 2
+Pick a pile to remove from: 3
+Hmmm. You entered an invalid value. Try again, Hobs.
+Hobs, how many sticks to remove? 1
+Pick a pile to remove from: 2
+1  
+
+2  | 
+
+3  | 
+
+4  | | | 
+
+Dr. Nimbot is making his move now
+AI turn : 
+
+The Dr took  2 sticks from pile:  4
+1  
+
+2  | 
+
+3  | 
+
+4  | 
+
+Player turn : 
+
+Hobs, how many sticks to remove? 1
+Pick a pile to remove from: 2
+1  
+
+2  
+
+3  | 
+
+4  | 
+
+Dr. Nimbot is making his move now
+AI turn : 
+
+The Dr took  1 sticks from pile:  3
+1  
+
+2  
+
+3  
+
+4  | 
+
+The winner is Dr. Nimbot! What a great game!

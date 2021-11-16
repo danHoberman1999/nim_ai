@@ -1,9 +1,19 @@
+'''
+Daniel Hoberman
+CPSC323
+Homework #7: Game of Nim Part 2
+Update to fix issues with ability to play
+finished 11/14/21
 
-from nim_board import nimBoard
+Adjusts my initial nim algorithm. Gives it the ability to play against other opponents.
+'''
+
+
+from Board import Board
 
 
 # Defines the player making moves
-class player(nimBoard):
+class player(Board):
     def __init__(self, name, state):
         self.player = name
         self.state = state
@@ -40,6 +50,3 @@ class player(nimBoard):
     def player_state(self):
         self.print_board(self.state)
         return self.state
-
-
-    

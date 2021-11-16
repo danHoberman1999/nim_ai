@@ -1,93 +1,20 @@
+'''
+Daniel Hoberman
+CPSC323
+Homework #7: Game of Nim Part 2
+Update to fix issues with ability to play
+finished 11/14/21
 
-class Nim():
-    def __init__(self):
-        self.nim_sticks = [[1],[3],[5],[7]]
-        self.player = None
-        self.AI = "Dr. Nimbot"
-        self.current_move = None
+Adjusts my initial nim algorithm. Gives it the ability to play against other opponents.
+'''
 
+from Board import Board
 
-    '''
-    Gets player name as input to start game.
-    '''
-    def get_player(self):
-        player_name = input("Enter player name: ")
-        self.player = player_name
-        print(self.player," vs. Dr. Nimbot (AI) will begin now!!!!")
-
-
-    '''
-    Method used to print the nim board vertically.
-    '''
-    def print_board(self):
-        for row, val in enumerate(self.nim_sticks):
-            print(row +1, " ", end='')
-            for num in range(val[0]):
-                print("|", end=' ')
-            print('\n')
-
-
-    '''
-    Method used to make player move and check if input is valid.
-    '''
-    def player_move(self):
-        self.current_move = self.player
-        print("Player turn : \n")
-        self.print_board()
-        while True:
-    
-            try:
-                num_sticks = int(input('{}, how many sticks to remove? '.format(self.player)))
-                stick_pile = int(input('Pick a pile to remove from: '))
-            except ValueError:
-                print("Hmmm. You entered an invalid value. Try again, {}.".format(self.player))
-                continue
-
-            if (num_sticks and stick_pile > 0) and (stick_pile <= len(self.nim_sticks)):
-                if (num_sticks <= self.nim_sticks[stick_pile -1][0]):
-                    if (num_sticks and stick_pile != 0):
-                        break
-        
-            # If not, display this statement
-            print("Hmmm. You entered an invalid value. Try again, {}.".format(self.player))
-        
-        # Update state
-        self.nim_sticks[int(stick_pile) - 1][0] -= int(num_sticks)
-        
-
-    '''
-    Makes the AI generated move.
-    '''
-    def make_dr_move(self, col, amount):
-        print("Dr. Nimbot is making his move now")
-        print("AI turn : \n")
-        self.nim_sticks[int(col)][0] -= int(amount)
-        print("The Dr took ", amount, "sticks from pile: ", col +1)
-        self.print_board()
-        self.current_move = self.AI
-
-
-
-    '''
-    Checks to see if the game has reached the end state.
-    '''
-    def game_over(self):
-        total = 0
-        for row in self.nim_sticks:
-            total += row[0]
-        
-        if total == 1:
-            return True
-        return False
-
-    
-
-
-class Dr_Nimbot():
-    def __init__(self, nim):
+class Bot(Board):
+    def __init__(self, state):
         self.name = "Dr. Nimbot"
         self.pile_states = None
-        self.nim = nim
+        self.state = state
         self.even = []
         self.odd = []
 
@@ -102,11 +29,11 @@ class Dr_Nimbot():
         third_pile = []
         fourth_pile = []
         
-        first_pile_state = self.nim.nim_sticks[0][0]
+        first_pile_state = self.state[0][0]
         if first_pile_state == 1:
             first_pile.append(1)
         
-        second_pile_state = self.nim.nim_sticks[1][0]
+        second_pile_state = self.state[1][0]
         if second_pile_state == 3:
             second_pile.append(1)
             second_pile.append(2)
@@ -116,7 +43,7 @@ class Dr_Nimbot():
             second_pile.append(1)
 
 
-        third_pile_state = self.nim.nim_sticks[2][0]
+        third_pile_state = self.state[2][0]
         if third_pile_state == 5:
             third_pile.append(1)
             third_pile.append(4)
@@ -131,7 +58,7 @@ class Dr_Nimbot():
             third_pile.append(1)
 
 
-        fourth_pile_state = self.nim.nim_sticks[3][0]
+        fourth_pile_state = self.state[3][0]
         if fourth_pile_state == 7:
             fourth_pile.append(1)
             fourth_pile.append(2)
@@ -204,7 +131,7 @@ class Dr_Nimbot():
         col_total = 0
         
 
-        for piles in self.nim.nim_sticks:
+        for piles in self.state:
             if piles[0] > 1:
                 large_pile_tracker +=1
             if piles[0] == 0:
@@ -214,7 +141,7 @@ class Dr_Nimbot():
 
 
         if empty_pile_tracker ==2 and large_pile_tracker ==2:
-            for col, piles in enumerate(self.nim.nim_sticks):
+            for col, piles in enumerate(self.state):
                 if piles[0] > 1:
                     pile_largest.append([piles[0],col])
             
@@ -231,32 +158,32 @@ class Dr_Nimbot():
 
                 
         if empty_pile_tracker ==2 and single_pile_tracker ==2:
-            for col, piles in enumerate(self.nim.nim_sticks):
+            for col, piles in enumerate(self.state):
                 if piles[0] == 1:
                     col_total = piles[0]
                     return col, col_total
 
         if single_pile_tracker ==3:
-            for col, piles in enumerate(self.nim.nim_sticks):
+            for col, piles in enumerate(self.state):
                 if piles[0] > 1:
                     col_total = piles[0]
                     return col, col_total
 
 
         if single_pile_tracker ==2 and large_pile_tracker ==1:
-            for col, piles in enumerate(self.nim.nim_sticks):
+            for col, piles in enumerate(self.state):
                 if piles[0] > 1:
                     col_total = piles[0]-1
                     return col, col_total
         
         if empty_pile_tracker == 3:
-            for col, piles in enumerate(self.nim.nim_sticks):
+            for col, piles in enumerate(self.state):
                 if piles[0] > 1:
                     col_total = piles[0] -1
                     return col, col_total
 
         if empty_pile_tracker == 2 and single_pile_tracker == 1:
-            for col, piles in enumerate(self.nim.nim_sticks):
+            for col, piles in enumerate(self.state):
                 if piles[0] >1:
                     col_num = col
                     col_total = piles[0]
@@ -335,46 +262,14 @@ class Dr_Nimbot():
                     elif largest in val:
                         return col, subtraction_amount
 
-            
 
-
-'''
-Loops the game until either the player or my bot wins the game
-'''            
-def main():
-    nim = Nim()
-    nim.get_player()
-    while not nim.game_over():
-        nim.player_move()
-        if nim.game_over():
-            break
-        nimbot = Dr_Nimbot(nim)
-        nimbot.nim_develop_state()
-        nimbot.nim_dictionary()
-        col, amount = nimbot.nim_algorithm()
-        nim.make_dr_move(col, amount)
-        if nim.game_over():
-            break
-    
-
-    if nim.current_move == "Dr. Nimbot":
-        print("Dr. Nimbot has defeated you with his giant brain!")
-    else:
-        print("You beat Dr. Nimbot. How is this possible?: ", nim.player)
-    
-
-if __name__ == "__main__":
-    #orig_stdout = sys.stdout
-    #f = open('nimbot_output.txt', 'w')
-    #sys.stdout = f
-
-    
-    main()
-    #f.close()
-
-
-# Dr. nimbot creates his own version of nim in init function
-# Dr. nimbot = NimPlayer
-# nim_player.py
-# def play(): 
-## Takes state and returns new state
+    '''
+    Keeps track of the state of the board after the Dr. makes his moves.
+    '''
+    def dr_state(self, col, amount):
+        print("Dr. Nimbot is making his move now")
+        print("AI turn : \n")
+        self.state[int(col)][0] -= int(amount)
+        print("The Dr took ", amount, "sticks from pile: ", col +1)
+        self.print_board(self.state)
+        return self.state
