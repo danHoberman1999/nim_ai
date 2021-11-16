@@ -1,7 +1,6 @@
+(base) dhoberman@Daniels-MacBook-Air homework6 % python3 main.py
 Enter player name: Danny
-Danny  vs. Dr. Nimbot (AI) will begin now!!!!
-Player turn : 
-
+Starting Board: 
 1  | 
 
 2  | | | 
@@ -10,69 +9,76 @@ Player turn :
 
 4  | | | | | | | 
 
-Danny, how many sticks to remove? 1   
+Player turn : 
+
+Danny, how many sticks to remove? 4
+Pick a pile to remove from: 4
+1  | 
+
+2  | | | 
+
+3  | | | | | 
+
+4  | | | 
+
+Dr. Nimbot is making his move now
+AI turn : 
+
+The Dr took  4 sticks from pile:  3
+1  | 
+
+2  | | | 
+
+3  | 
+
+4  | | | 
+
+Player turn : 
+
+Danny, how many sticks to remove? 2
+Pick a pile to remove from: 2
+1  | 
+
+2  | 
+
+3  | 
+
+4  | | | 
+
+Dr. Nimbot is making his move now
+AI turn : 
+
+The Dr took  3 sticks from pile:  4
+1  | 
+
+2  | 
+
+3  | 
+
+4  
+
+Player turn : 
+
+Danny, how many sticks to remove? 1
 Pick a pile to remove from: 1
+1  
+
+2  | 
+
+3  | 
+
+4  
+
 Dr. Nimbot is making his move now
 AI turn : 
 
 The Dr took  1 sticks from pile:  2
 1  
 
-2  | | 
+2  
 
-3  | | | | | 
-
-4  | | | | | | | 
-
-Player turn : 
-
-1  
-
-2  | | 
-
-3  | | | | | 
-
-4  | | | | | | | 
-
-Danny, how many sticks to remove? 3
-Pick a pile to remove from: 3
-Dr. Nimbot is making his move now
-AI turn : 
-
-The Dr took  7 sticks from pile:  4
-1  
-
-2  | | 
-
-3  | | 
+3  | 
 
 4  
 
-Player turn : 
-
-1  
-
-2  | | 
-
-3  | | 
-
-4  
-
-Danny, how many sticks to remove? 1
-Pick a pile to remove from: 1
-Hmmm. You entered an invalid value. Try again, Danny.
-Danny, how many sticks to remove? 1
-Pick a pile to remove from: 2
-Dr. Nimbot is making his move now
-AI turn : 
-
-The Dr took  2 sticks from pile:  3
-1  
-
-2  | 
-
-3  
-
-4  
-
-Dr. Nimbot has defeated you with his giant brain!
+The winner is Dr. Nimbot! What a great game!
