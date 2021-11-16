@@ -1,18 +1,22 @@
-# Dr_Stewart Nim AI
+# Dr_Nimbot (Nim AI)
 
-### Tech Stack
+### Nim Board
 
-1. Python
+1. |
+2. | | |
+3. | | | | |
+4. | | | | | | |
 
-### Description
+### Rules
 
-Coded a nim AI that is impossible to beat.
+1. Each round player can remove any number of sticks from any row (as long as the board contains that amount of sticks)
+2. The goal is to leave the opponenet with the final stick
 
 ### Usage
 
 1. Start python script
 2. Enter name
-3. Try to beat Dr. Stewart in game of nim
+3. Try to beat Dr. Nimbot in game of nim
 
 ### Credits
 
@@ -22,7 +26,7 @@ Creator: Daniel Hoberman
 
 MIT License
 
-Copyright (c) [2021] [Daniel Hoberman] [Adam Lee]
+Copyright (c) [2021] [Daniel Hoberman]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
